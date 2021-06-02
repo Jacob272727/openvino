@@ -262,7 +262,7 @@ nav:
       - Integrate the Inference Engine with Your Application: IE_DG/Integrate_with_customer_application_new_API.md
       - '[DEPRECATED] Migration from Inference Engine Plugin API to Core API': IE_DG/Migration_CoreAPI.md
       - Introduction to Performance Topics: IE_DG/Intro_to_Performance.md
-      - Inference Engine Python* API Overview: ../inference-engine/ie_bridges/python/api_overview.md
+      - Inference Engine Python* API Overview: inference-engine/ie_bridges/python/api_overview.md
       - Read an ONNX model: IE_DG/ONNX_Support.md
       - '[DEPRECATED] Import an ONNX model': IE_DG/OnnxImporterTutorial.md
       - Using Dynamic Batching Feature: IE_DG/DynamicBatching.md
@@ -273,8 +273,8 @@ nav:
       - Using Low-Precision 8-bit Integer Inference:
         - Using Low-Precision 8-bit Integer Inference: IE_DG/Int8Inference.md
       - Utilities to Validate Your Converted Model:
-        - Utilities to Validate Your Converted Model: ../inference-engine/tools/cross_check_tool/README.md
-        - Using Cross Check Tool for Per-Layer Comparison Between Plugins: ../inference-engine/tools/cross_check_tool/README.md
+        - Utilities to Validate Your Converted Model: inference-engine/tools/cross_check_tool/README.md
+        - Using Cross Check Tool for Per-Layer Comparison Between Plugins: inference-engine/tools/cross_check_tool/README.md
       - Introduction to OpenVINO state API: IE_DG/network_state_intro.md
       - Supported Devices:
         - Supported Devices: IE_DG/supported_plugins/Supported_Devices.md
@@ -302,7 +302,7 @@ nav:
       - Debug capabilities: nGraph_DG/nGraph_debug_capabilities.md
       - Python API: nGraph_DG/nGraph_Python_API.md
     - Deployment Manager Guide: install_guides/deployment-manager-tool.md
-    - Compile Tool: ../inference-engine/tools/compile_tool/README.md
+    - Compile Tool: inference-engine/tools/compile_tool/README.md
     - API References:
       - Inference Engine C API Reference: ie_c_api/modules.html
       - Inference Engine Python API Reference: ie_python_api/annotated.html

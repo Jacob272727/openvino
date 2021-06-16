@@ -4,7 +4,7 @@ Intermediate Representation and Operation Sets
 
 .. toctree::
    :maxdepth: 2
-   :caption: Model Optimizer
+   :caption: Intermediate Representation and Operation Sets
 
    opset.md
    opset7.md

@@ -4,7 +4,7 @@ Prepare Model
 
 .. toctree::
    :maxdepth: 2
-   :caption: Model Optimizer
+   :caption: Prepare Model
 
    Prepare_Trained_Model.md
    Config_Model_Optimizer.md

@@ -4,7 +4,7 @@ Convert Model From MxNet
 
 .. toctree::
    :maxdepth: 2
-   :caption: Model Optimizer
+   :caption: Convert Model From MxNet
 
    ../Convert_Model_From_MxNet.md
    Convert_Style_Transfer_From_MXNet.md

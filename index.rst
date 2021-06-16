@@ -9,7 +9,7 @@ Welcome to OpenVINO's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Model Optimizer
+   :caption: MO
 
    docs/MO_DG/index.rst
    docs/HOWTO/Custom_Layers_Guide.md

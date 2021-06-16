@@ -5,7 +5,7 @@ Customize Model Optimizer
 
 .. toctree::
    :maxdepth: 2
-   :caption: Model Optimizer
+   :caption: Customize Model Optimizer
 
    Customize_Model_Optimizer.md
    Extending_Model_Optimizer_with_New_Primitives.md

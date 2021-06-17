@@ -4,8 +4,7 @@ PyTorch Specific
 
 .. toctree::
    :maxdepth: 2
-   :caption: PyTorch Specific
-
+   
    Converting_Model
    Converting_Model_General
    Cutting_Model.rst

@@ -4,8 +4,7 @@ Convert Model
 
 .. toctree::
    :maxdepth: 2
-   :caption: Convert Model
-
+   
    Converting_Model
    Converting_Model_General
 

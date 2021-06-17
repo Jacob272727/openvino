@@ -4,8 +4,7 @@ Convert Model From Tensorflow
 
 .. toctree::
    :maxdepth: 2
-   :caption: Convert Model From Tensorflow
-
+   
    ../Convert_Model_From_TensorFlow.md
    Convert_YOLO_From_Tensorflow.md
    Convert_FaceNet_From_Tensorflow.md

@@ -9,8 +9,7 @@ Welcome to OpenVINO's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
+   
    docs/HOWTO/Custom_Layers_Guide.md
    docs/MO_DG/IR_and_opsets.md
    docs/ops/index.rst

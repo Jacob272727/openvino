@@ -4,8 +4,7 @@ Intermediate Representation and Operation Sets
 
 .. toctree::
    :maxdepth: 2
-   :caption: Intermediate Representation and Operation Sets
-
+   
    opset.md
    opset7.md
    opset6.md

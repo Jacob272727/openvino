@@ -11,7 +11,6 @@ Welcome to OpenVINO's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   docs/MO_DG/index.rst
    docs/HOWTO/Custom_Layers_Guide.md
    docs/MO_DG/IR_and_opsets.md
    docs/ops/index.rst

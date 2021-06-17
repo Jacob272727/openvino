@@ -6,6 +6,458 @@ through scripts or by using a manual process.
 
 ## Using Configuration Scripts
 
+```````{tab} Using configuration scripts
+
+
+``````{tab} Linux
+
+`````{tab} All frameworks
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+./install_prerequisites.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+virtualenv --system-site-packages -p python3 ./venv
+source ./venv/bin/activate  # sh, bash, ksh, or zsh
+./install_prerequisites.sh
+```
+````
+
+`````
+
+`````{tab} Caffe
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_caffe.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_caffe.sh
+```
+````
+
+`````
+
+`````{tab} Tensorflow 1.x
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_tf.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_tf.sh
+```
+````
+
+`````
+
+`````{tab} Tensorflow 2.x
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_tf2.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_tf2.sh
+```
+````
+
+`````
+
+`````{tab} MXNet
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_mxnet.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_mxnet.sh
+```
+````
+
+`````
+
+`````{tab} ONNX
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_onnx.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_onnx.sh
+```
+````
+
+`````
+
+`````{tab} Kaldi
+
+````{tab} Install globally
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_kaldi.sh
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bash
+cd <INSTALL_DIR>/deployment_tools/model_optimizer/install_prerequisites
+install_prerequisites_kaldi.sh
+```
+````
+
+`````
+
+
+``````
+
+``````{tab} Windows
+
+`````{tab} All frameworks
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites.bat
+```
+````
+
+`````
+
+`````{tab} Caffe
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_caffe.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_caffe.bat
+```
+````
+
+`````
+
+`````{tab} Tensorflow 1.x
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_tf.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_tf.bat
+```
+````
+
+`````
+
+`````{tab} Tensorflow 2.x
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_tf2.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_tf2.bat
+```
+````
+
+`````
+
+`````{tab} MXNet
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_mxnet.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_mxnet.bat
+```
+````
+
+`````
+
+`````{tab} ONNX
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_onnx.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_onnx.bat
+```
+````
+
+`````
+
+`````{tab} Kaldi
+
+````{tab} Install globally
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_kaldi.bat
+```
+````
+
+````{tab} Install to virtual env
+```{code-block} bat
+cd <INSTALL_DIR>\deployment_tools\model_optimizer\install_prerequisites\
+install_prerequisites_kaldi.bat
+```
+````
+
+`````
+
+``````
+
+
+```````
+
+
+```````{tab} Using manual configuration process
+
+
+``````{tab} Linux
+
+`````{tab} All frameworks
+
+````{tab} Install globally
+dsadsa
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Caffe
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Tensorflow 1.x
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Tensorflow 2.x
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} MXNet
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} ONNX
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Kaldi
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+``````
+
+``````{tab} Windows
+
+`````{tab} All frameworks
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Caffe
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Tensorflow 1.x
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Tensorflow 2.x
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} MXNet
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} ONNX
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+`````{tab} Kaldi
+
+````{tab} Install globally
+TBD
+````
+
+````{tab} Install to virtual env
+TBD
+````
+
+`````
+
+``````
+
+
+```````
+
 You can either configure all three frameworks at the same time or install an
 individual framework. The scripts delivered with the tool install all required
 dependencies and provide the fastest and easiest way to configure the Model

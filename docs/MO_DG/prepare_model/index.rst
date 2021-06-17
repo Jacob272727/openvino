@@ -13,6 +13,4 @@ Prepare Model
    convert_model/Cutting_Model.md
    customize_model_optimizer/Subgraph_Replacement_Model_Optimizer.md
    Supported_Frameworks_Layers.md
-   convert_model/Legacy_IR_Layers_Catalog_Spec.md
-   convert_model/IR_suitable_for_INT8_inference.md
    customize_model_optimizer/index.rst

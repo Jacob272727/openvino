@@ -1,24 +1,21 @@
-=============
-Convert Model
-=============
+================
+PyTorch Specific
+================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Convert Model
+   :caption: PyTorch Specific
 
    Converting_Model
    Converting_Model_General
-
+   Cutting_Model.rst
    Convert_Model_From_Caffe
    tf_specific/index
    mxnet_specific/index
    kaldi_specific/index
    onnx_specific/index
    pytorch_specific/index
+   Convert_Model_From_MxNet
+
    IR_suitable_for_INT8_inference
-   Model_Optimization_Techniques
-   Cutting_Model
-   customize_model_optmizer/index
-   Supported_Frameworks_Layers
    Legacy_IR_Layers_Catalog_Spec
-   IR_suitable_for_INT8_inference

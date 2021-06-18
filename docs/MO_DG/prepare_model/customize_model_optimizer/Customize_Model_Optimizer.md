@@ -313,7 +313,7 @@ The back phase starts after the layout change to NCHW. This phase contains mostl
 1. Transformations that should work with a graph in the NCHW layout and thus cannot be implemented in the middle
 phase.
 2. Transformations that replace nodes corresponding to internal Model Optimizer operations with nodes corresponding to the 
-[opset](@ref openvino_docs_ops_opset) operations.
+[opset](https://docs.openvinotoolkit.org/latest/openvino_docs_ops_opset.html) operations.
 3. Transformations that normalize operations inputs according to the specification.
 4. Final optimization transformations.
 
@@ -329,7 +329,7 @@ steps:
 
 1. Iterates over all operation nodes in the graph and checks that all nodes have the `type` attribute set. This attribute
 defines the operation type and is used in the Inference Engine to instantiate proper operation from the
-[opset](@ref openvino_docs_ops_opset) specified in the `version` attribute of the node. If some node does not have
+[opset](https://docs.openvinotoolkit.org/latest/openvino_docs_ops_opset.html) specified in the `version` attribute of the node. If some node does not have
 attribute `type` or its values is equal to `None`, the Model Optimizer exits with an error.
 2. Performs type inference of graph operations similar to the shape inference. Inferred data types are saved to a port
 attributes in the IR.
@@ -530,11 +530,11 @@ There are a number of common attributes used in the operations. Here is the list
 * `id` — unique identifier of a node in a graph. Generated automatically equal to the number of nodes in the graph plus
 1 if not specified. **Mandatory**.
 * `name` — name of the operation. Generated automatically equal to the `id` if not specified. **Mandatory**.
-* `type` — type of the operation according to the [opset specification](@ref openvino_docs_ops_opset). For the internal
+* `type` — type of the operation according to the [opset specification](https://docs.openvinotoolkit.org/latest/openvino_docs_ops_opset.html). For the internal
 Model Optimizer operations this attribute should be set to `None`. The model conversion fails if an operation with
 `type` equal to `None` comes to the IR emitting phase. **Mandatory**.
 * `version` — the operation set (opset) name the operation belongs to. If not specified, the Model Optimizer sets it
-equal to `experimental`. Refer to [nGraph Basic Concepts](@ref openvino_docs_nGraph_DG_basic_concepts) for more
+equal to `experimental`. Refer to [nGraph Basic Concepts](https://docs.openvinotoolkit.org/latest/openvino_docs_nGraph_DG_basic_concepts.html) for more
 information about operation sets. **Mandatory**.
 * `op` — Model Optimizer type of the operation. In many cases, the value of `type` is equal to the value of `op`. But
 when the Model Optimizer cannot instantiate the opset operation during model loading, it creates an instance of an internal
@@ -1290,7 +1290,7 @@ Refer to the `extensions/back/GatherNormalizer.py` for the example of a such typ
 ## See Also <a name="see-also"></a>
 * [Deep Learning Network Intermediate Representation and Operation Sets in OpenVINO™](../../IR_and_opsets.md)
 * [Converting a Model to Intermediate Representation (IR)](../convert_model/Converting_Model.md)
-* [nGraph Basic Concepts](@ref openvino_docs_nGraph_DG_basic_concepts)
+* [nGraph Basic Concepts](https://docs.openvinotoolkit.org/latest/openvino_docs_nGraph_DG_basic_concepts.html)
 * [Inference Engine Extensibility Mechanism](../../../IE_DG/Extensibility_DG/Intro.md)
 * [Extending the Model Optimizer with Caffe* Python Layers](Extending_Model_Optimizer_with_Caffe_Python_Layers.md)
 * [Extending the Model Optimizer for Custom MXNet* Operations](Extending_MXNet_Model_Optimizer_with_New_Primitives.md)

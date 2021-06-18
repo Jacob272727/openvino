@@ -42,10 +42,11 @@ namespace ngraph
                 void set_axis(const size_t axis) { m_axis = axis; }
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
             private:
                 size_t m_axis;
             };
-        }
-    }
-}
+        } // namespace v1
+    }     // namespace op
+} // namespace ngraph

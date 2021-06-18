@@ -26,7 +26,7 @@ HeteroInferRequest::HeteroInferRequest(InferenceEngine::InputsDataMap networkInp
         IE_THROW() << "Internal error: no information about network's output/input";
     }
 
-    auto requestBlob([&](const std::string& blobName, InferenceEngine::InferRequest::Ptr r) {
+    auto requestBlob([&](const std::string& blobName, InferenceEngine::SoIInferRequestInternal& r) {
         std::string intermediateBlobName = blobName;
         auto itName = subgraphInputToOutputBlobNames.find(blobName);
         if (itName != subgraphInputToOutputBlobNames.end()) {
@@ -49,16 +49,16 @@ HeteroInferRequest::HeteroInferRequest(InferenceEngine::InputsDataMap networkInp
 
     // go over all subnet and create requests
     for (auto&& desc : _inferRequests) {
-        desc._request = desc._network.CreateInferRequestPtr();
+        desc._request = { desc._network, desc._network->CreateInferRequest() };
         // go over all inputs and get blobs from subnet infer requests
-        for (auto&& outputInfo : desc._network.GetOutputsInfo()) {
+        for (auto&& outputInfo : desc._network->GetOutputsInfo()) {
             requestBlob(outputInfo.first, desc._request);
         }
     }
 
     // go over all outputs and get blobs from subnet infer requests
     for (auto&& desc : _inferRequests) {
-        for (auto&& inputInfo : desc._network.GetInputsInfo()) {
+        for (auto&& inputInfo : desc._network->GetInputsInfo()) {
             requestBlob(inputInfo.first, desc._request);
         }
     }
@@ -69,7 +69,7 @@ void HeteroInferRequest::SetBlob(const std::string& name, const InferenceEngine:
     assert(!_inferRequests.empty());
     for (auto &&desc : _inferRequests) {
         auto &r = desc._request;
-        assert(nullptr != r);
+        assert(r);
         InputInfo::Ptr foundInput;
         DataPtr foundOutput;
         try {
@@ -86,7 +86,7 @@ void HeteroInferRequest::InferImpl() {
     for (auto &&desc : _inferRequests) {
         OV_ITT_SCOPED_TASK(itt::domains::HeteroPlugin, desc._profilingTask);
         auto &r = desc._request;
-        assert(nullptr != r);
+        assert(r);
         r->Infer();
     }
 }
@@ -107,8 +107,8 @@ void HeteroInferRequest::updateInOutIfNeeded() {
     assert(!_inferRequests.empty());
     for (auto &&desc : _inferRequests) {
         auto &r = desc._request;
-        assert(nullptr != r);
-        for (auto&& inputInfo : desc._network.GetInputsInfo()) {
+        assert(r);
+        for (auto&& inputInfo : desc._network->GetInputsInfo()) {
             auto& ioname = inputInfo.first;
             auto iti = _inputs.find(ioname);
             if (iti != _inputs.end()) {
@@ -126,7 +126,7 @@ void HeteroInferRequest::updateInOutIfNeeded() {
                 }
             }
         }
-        for (auto&& outputInfo : desc._network.GetOutputsInfo()) {
+        for (auto&& outputInfo : desc._network->GetOutputsInfo()) {
             auto& ioname = outputInfo.first;
             auto ito = _outputs.find(ioname);
             if (ito != _outputs.end()) {

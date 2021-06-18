@@ -210,7 +210,7 @@ namespace shape_of
         }
         return true;
     }
-}
+} // namespace shape_of
 
 bool op::v3::ShapeOf::evaluate(const HostTensorVector& output_values,
                                const HostTensorVector& input_values) const
@@ -219,6 +219,20 @@ bool op::v3::ShapeOf::evaluate(const HostTensorVector& output_values,
     NGRAPH_CHECK(validate_host_tensor_vector(input_values, 1));
     NGRAPH_CHECK(validate_host_tensor_vector(output_values, 1));
     return shape_of::evaluate_shape_of(output_values[0], input_values[0]);
+}
+
+bool op::v3::ShapeOf::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v3_ShapeOf_has_evaluate);
+    switch (get_output_element_type(0))
+    {
+    case ngraph::element::i32:
+    case ngraph::element::i64:
+    case ngraph::element::u32:
+    case ngraph::element::u64: return true;
+    default: break;
+    }
+    return false;
 }
 
 bool op::v3::ShapeOf::evaluate_lower(const HostTensorVector& output_values) const
@@ -283,6 +297,20 @@ bool op::v0::ShapeOf::evaluate(const HostTensorVector& output_values,
     NGRAPH_CHECK(validate_host_tensor_vector(input_values, 1));
     NGRAPH_CHECK(validate_host_tensor_vector(output_values, 1));
     return shape_of::evaluate_shape_of(output_values[0], input_values[0]);
+}
+
+bool op::v0::ShapeOf::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v0_ShapeOf_has_evaluate);
+    switch (get_output_element_type(0))
+    {
+    case ngraph::element::i32:
+    case ngraph::element::i64:
+    case ngraph::element::u32:
+    case ngraph::element::u64: return true;
+    default: break;
+    }
+    return false;
 }
 
 bool op::v0::ShapeOf::constant_fold(OutputVector& output_values, const OutputVector& input_values)

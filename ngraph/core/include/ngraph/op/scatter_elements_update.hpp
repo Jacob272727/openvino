@@ -40,12 +40,13 @@ namespace ngraph
                     clone_with_new_inputs(const OutputVector& inputs) const override;
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
             private:
                 bool evaluate_scatter_element_update(const HostTensorVector& outputs,
                                                      const HostTensorVector& inputs) const;
             };
-        }
+        } // namespace v3
         using v3::ScatterElementsUpdate;
-    }
-}
+    } // namespace op
+} // namespace ngraph

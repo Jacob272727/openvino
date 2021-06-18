@@ -125,7 +125,8 @@ public:
                  topology_impl const& topology,
                  build_options const& options,
                  bool is_internal,
-                 bool no_optimizations = false);
+                 bool no_optimizations = false,
+                 bool is_body_program = false);
     /* constructor used to build a program from subset of nodes of other program (used in propagate_constants) */
     program_impl(engine_impl& engine_ref,
                  std::set<std::shared_ptr<program_node>> const& nodes,
@@ -140,11 +141,13 @@ public:
     std::vector<program_node*>& get_outputs() {
         return outputs;
     }  // ToDo: redesign reorder-inputs pass to make it const as_well as get_engine and get options
+    bool is_loop_body() const { return is_body_program; }
     bool is_debug_build() const { return options.get<build_option_type::debug>()->enabled(); }
     const nodes_ordering& get_processing_order() const;
     nodes_ordering& get_processing_order();
     uint32_t get_prog_id() { return prog_id; }
     const std::list<primitive_id>& get_optimized_out() const { return optimized_out; }
+    const std::list<optimized_info>& get_optimized() const { return optimized; }
     bool has_node(const primitive_id& prim) const { return nodes_map.count(prim) > 0; }
     program_node& get_node(primitive_id const& id);
     program_node const& get_node(primitive_id const& id) const;
@@ -186,7 +189,7 @@ public:
     bool extract_and_remove(program_node& node);
 
     // Fuses two nodes into fused_node and removes peer_node from graph
-    void fuse_nodes(program_node& fused_node, program_node& peer_node);
+    void fuse_nodes(program_node& fused_node, program_node& peer_node, std::map<primitive_id, std::vector<primitive_id>>* fusing_history);
 
     // returns if 'node' has been removed
     bool remove_if_dangling(program_node& node);
@@ -196,7 +199,7 @@ public:
     void mark_if_data_flow(program_node& node);
     // Reverses connection - user becomes dependency.
 
-    void remove_nodes(std::list<program_node*>& to_remove);
+    void remove_nodes(std::vector<program_node*>& to_remove);
     void dump_program(const char* stage,
                       bool with_full_info,
                       std::function<bool(program_node const&)> const& filter = nullptr) const;
@@ -217,6 +220,7 @@ private:
     std::list<program_node*> inputs;
     std::vector<program_node*> outputs;
     nodes_ordering processing_order;
+    bool is_body_program;
     std::unique_ptr<pass_manager> pm;
 
     std::map<primitive_id, std::shared_ptr<program_node>> nodes_map;

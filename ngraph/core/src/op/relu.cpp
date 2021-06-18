@@ -58,13 +58,30 @@ namespace relu
         }
         return rc;
     }
-}
+} // namespace relu
 
 bool op::Relu::evaluate(const HostTensorVector& outputs, const HostTensorVector& inputs) const
 {
     NGRAPH_OP_SCOPE(v0_Relu_evaluate);
     NGRAPH_CHECK(validate_host_tensor_vector(outputs, 1) && validate_host_tensor_vector(inputs, 1));
     return relu::evaluate_relu(inputs[0], outputs[0]);
+}
+
+bool op::Relu::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v0_Relu_has_evaluate);
+    switch (get_input_element_type(0))
+    {
+    case ngraph::element::boolean:
+    case ngraph::element::i32:
+    case ngraph::element::i64:
+    case ngraph::element::u32:
+    case ngraph::element::u64:
+    case ngraph::element::f16:
+    case ngraph::element::f32: return true;
+    default: break;
+    }
+    return false;
 }
 
 bool op::Relu::visit_attributes(AttributeVisitor& visitor)

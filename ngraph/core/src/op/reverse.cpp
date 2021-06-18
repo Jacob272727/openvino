@@ -147,7 +147,7 @@ namespace reverseop
         size_t axes_rank = in->get_element_count();
         std::copy(axes_indices, axes_indices + axes_rank, std::inserter(axes, axes.end()));
     }
-}
+} // namespace reverseop
 
 #define GET_AXES(a, ...)                                                                           \
     case element::Type_t::a:                                                                       \
@@ -201,6 +201,31 @@ bool op::v1::Reverse::evaluate(const HostTensorVector& outputs,
 {
     NGRAPH_OP_SCOPE(v1_Reverse_evaluate);
     return evaluate_reverse(outputs, inputs);
+}
+
+bool op::v1::Reverse::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v1_Reverse_has_evaluate);
+
+    if (get_mode() == op::v1::Reverse::Mode::INDEX)
+    {
+        switch (get_input_element_type(1))
+        {
+        case ngraph::element::i8:
+        case ngraph::element::i16:
+        case ngraph::element::i32:
+        case ngraph::element::i64:
+        case ngraph::element::u8:
+        case ngraph::element::u16:
+        case ngraph::element::u32:
+        case ngraph::element::u64: return true;
+        default: return false; ;
+        }
+    }
+    else
+    {
+        return true;
+    }
 }
 
 namespace ngraph

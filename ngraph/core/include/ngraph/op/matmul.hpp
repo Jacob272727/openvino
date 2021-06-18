@@ -38,6 +38,7 @@ namespace ngraph
 
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
                 bool get_transpose_a() const { return m_transpose_a; }
                 bool get_transpose_b() const { return m_transpose_b; }
@@ -48,7 +49,7 @@ namespace ngraph
                 bool m_transpose_a;
                 bool m_transpose_b;
             };
-        }
+        } // namespace v0
         using v0::MatMul;
     } // namespace op
 } // namespace ngraph

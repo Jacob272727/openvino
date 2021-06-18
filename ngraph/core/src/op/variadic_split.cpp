@@ -154,7 +154,7 @@ namespace variadic_split
 
         return true;
     }
-}
+} // namespace variadic_split
 
 bool op::v1::VariadicSplit::evaluate_variadic_split(const HostTensorVector& inputs,
                                                     const HostTensorVector& outputs) const
@@ -207,4 +207,11 @@ bool op::v1::VariadicSplit::evaluate(const HostTensorVector& outputs,
 {
     NGRAPH_OP_SCOPE(v1_VariadicSplit_evaluate);
     return evaluate_variadic_split(inputs, outputs);
+}
+
+bool op::v1::VariadicSplit::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v1_VariadicSplit_has_evaluate);
+    return get_input_element_type(1).is_integral_number() &&
+           get_input_element_type(2).is_integral_number();
 }

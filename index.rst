@@ -13,7 +13,6 @@ Welcome to OpenVINO's documentation!
    docs/HOWTO/Custom_Layers_Guide.md
    docs/MO_DG/IR_and_opsets.md
    docs/ops/index.rst
-   docs/IE_DG/index.rst
    docs/nGraph_DG/index.rst
    docs/install_guides/deployment-manager-tool.md
 

@@ -47,14 +47,15 @@ namespace ngraph
 
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
                 RoundMode get_mode() const { return m_mode; }
 
             private:
                 RoundMode m_mode;
             };
-        }
-    }
+        } // namespace v5
+    }     // namespace op
     NGRAPH_API
     std::ostream& operator<<(std::ostream& s, const op::v5::Round::RoundMode& type);
 
@@ -72,4 +73,4 @@ namespace ngraph
                                                     5};
         const DiscreteTypeInfo& get_type_info() const override { return type_info; }
     };
-}
+} // namespace ngraph

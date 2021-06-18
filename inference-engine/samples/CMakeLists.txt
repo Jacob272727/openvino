@@ -129,18 +129,16 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/gflags")
     add_gflags()
 endif()
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/zlib")
+    add_subdirectory(thirdparty/zlib EXCLUDE_FROM_ALL)
 endif()
 
-if(IE_NOT_FOUND_MESSAGE)
-    # the flag is used to throw a custom message in case if the IE package is not found.
-    find_package(InferenceEngine 2.1 QUIET)
-    if (NOT(InferenceEngine_FOUND))
-        message(FATAL_ERROR ${IE_NOT_FOUND_MESSAGE})
-    endif()
-else()
-    find_package(InferenceEngine 2.1 REQUIRED)
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cnpy")
+    add_subdirectory(thirdparty/cnpy EXCLUDE_FROM_ALL)
+endif()
+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 endif()
 
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/common/utils")
@@ -151,8 +149,8 @@ endif()
 # exactly the same OpenCV_DIR path which was used for the InferenceEngine build
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/common/format_reader")
     add_subdirectory(common/format_reader)
-elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/common/opencv_c_wraper")
-    add_subdirectory(common/opencv_c_wraper)
+elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/common/opencv_c_wrapper")
+    add_subdirectory(common/opencv_c_wrapper)
 endif()
 
 # samples build can be switched off during whole IE build
@@ -191,10 +189,10 @@ include(CMakeParseArguments)
 #               [INCLUDE_DIRECTORIES <include dir>]
 #               [DEPENDENCIES <dependencies>]
 #               [OPENCV_DEPENDENCIES <opencv modules>]
-#               [EXCLUDE_CPPLINT]
+#               [EXCLUDE_CLANG_FORMAT]
 #
 macro(ie_add_sample)
-    set(options EXCLUDE_CPPLINT)
+    set(options EXCLUDE_CLANG_FORMAT)
     set(oneValueArgs NAME)
     set(multiValueArgs SOURCES HEADERS DEPENDENCIES OPENCV_DEPENDENCIES INCLUDE_DIRECTORIES)
     cmake_parse_arguments(IE_SAMPLE "${options}" "${oneValueArgs}"
@@ -211,13 +209,13 @@ macro(ie_add_sample)
 
     # Create named folders for the sources within the .vcproj
     # Empty name lists them directly under the .vcproj
-    source_group("src" FILES ${IE_SAMPLES_SOURCES})
-    if(IE_SAMPLES_HEADERS)
-        source_group("include" FILES ${IE_SAMPLES_HEADERS})
+    source_group("src" FILES ${IE_SAMPLE_SOURCES})
+    if(IE_SAMPLE_HEADERS)
+        source_group("include" FILES ${IE_SAMPLE_HEADERS})
     endif()
 
     # Create executable file from sources
-    add_executable(${IE_SAMPLE_NAME} ${IE_SAMPLE_SOURCES} ${IE_SAMPLES_HEADERS})
+    add_executable(${IE_SAMPLE_NAME} ${IE_SAMPLE_SOURCES} ${IE_SAMPLE_HEADERS})
     if(IE_SAMPLE_OPENCV_DEPENDENCIES)
         target_compile_definitions(${IE_SAMPLE_NAME} PRIVATE USE_OPENCV)
     endif()
@@ -227,6 +225,14 @@ macro(ie_add_sample)
         set(c_sample ON)
         set(folder_name c_samples)
     endif()
+
+    if(c_sample)
+        set(ie_component inference_engine_c_api)
+    else()
+        set(ie_component inference_engine)
+    endif()
+
+    find_package(InferenceEngine REQUIRED COMPONENTS ${ie_component})
 
     set_target_properties(${IE_SAMPLE_NAME} PROPERTIES FOLDER ${folder_name}
                                                        COMPILE_PDB_NAME ${IE_SAMPLE_NAME})
@@ -248,12 +254,8 @@ macro(ie_add_sample)
     endif()
     add_dependencies(ie_samples ${IE_SAMPLE_NAME})
 
-    if(COMMAND add_cpplint_target AND NOT IE_SAMPLE_EXCLUDE_CPPLINT)
-        if(c_sample)
-            set(custom_filters "-readability/casting")
-        endif()
-        add_cpplint_target(${IE_SAMPLE_NAME}_cpplint FOR_TARGETS ${IE_SAMPLE_NAME}
-                           CUSTOM_FILTERS ${custom_filters})
+    if(COMMAND add_clang_format_target AND NOT IE_SAMPLE_EXCLUDE_CLANG_FORMAT)
+        add_clang_format_target(${IE_SAMPLE_NAME}_clang FOR_SOURCES ${IE_SAMPLE_SOURCES} ${IE_SAMPLE_HEADERS})
     endif()
 endmacro()
 

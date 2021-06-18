@@ -55,7 +55,7 @@ namespace
         axes_known = true;
         return std::make_pair(axes_known, broadcast_axes);
     }
-}
+} // namespace
 
 std::pair<bool, AxisSet> op::v3::Broadcast::get_broadcast_axes() const
 {
@@ -127,7 +127,7 @@ namespace
         }
         return result_shape;
     }
-}
+} // namespace
 
 bool op::v3::Broadcast::broadcast_evaluate(const HostTensorVector& outputs,
                                            const HostTensorVector& inputs) const
@@ -221,6 +221,13 @@ bool op::v3::Broadcast::evaluate(const HostTensorVector& outputs,
     return broadcast_evaluate(outputs, inputs);
 }
 
+bool op::v3::Broadcast::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v3_Broadcast_has_evaluate);
+    return m_mode.m_type == BroadcastType::NONE || m_mode.m_type == BroadcastType::PDPD ||
+           m_mode.m_type == BroadcastType::NUMPY || m_mode.m_type == BroadcastType::BIDIRECTIONAL;
+}
+
 namespace
 {
     using namespace op;
@@ -236,7 +243,7 @@ namespace
         }
         return broadcast_mode;
     }
-}
+} // namespace
 
 constexpr NodeTypeInfo op::v1::Broadcast::type_info;
 
@@ -312,4 +319,11 @@ bool op::v1::Broadcast::evaluate(const HostTensorVector& outputs,
 {
     NGRAPH_OP_SCOPE(v1_Broadcast_evaluate);
     return op::util::BroadcastBase::evaluate(outputs, inputs);
+}
+
+bool op::v1::Broadcast::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v1_Broadcast_has_evaluate);
+    return m_mode.m_type == BroadcastType::NONE || m_mode.m_type == BroadcastType::PDPD ||
+           m_mode.m_type == BroadcastType::NUMPY;
 }

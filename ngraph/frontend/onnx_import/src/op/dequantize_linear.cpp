@@ -42,7 +42,7 @@ namespace ngraph
                         return default_opset::Constant::create(element::f32, Shape{}, {0});
                     }
                 }
-            }
+            } // namespace
             namespace set_1
             {
                 OutputVector dequantize_linear(const Node& node)
@@ -68,7 +68,7 @@ namespace ngraph
                     return {std::make_shared<default_opset::Multiply>(
                         std::make_shared<default_opset::Subtract>(converted_x, zero_point), scale)};
                 }
-            }
+            } // namespace set_1
 
             namespace set_13
             {
@@ -128,8 +128,15 @@ namespace ngraph
                                                                 const int64_t axis,
                                                                 const PartialShape& x_shape)
                     {
-                        std::vector<int64_t> target_dims;
+                        auto input_rank = input.get_partial_shape().rank();
 
+                        // Do not reshape input, if it contains a scalar value
+                        if (input_rank.is_static() && input_rank.get_length() == 0)
+                        {
+                            return input.get_node_shared_ptr();
+                        }
+
+                        std::vector<int64_t> target_dims;
                         for (int64_t i = 0; i < axis; ++i)
                         {
                             target_dims.push_back(1);
@@ -155,7 +162,7 @@ namespace ngraph
 
                         return std::make_shared<default_opset::Reshape>(input, target_shape, true);
                     }
-                }
+                } // namespace
 
                 OutputVector dequantize_linear(const Node& node)
                 {
@@ -191,7 +198,7 @@ namespace ngraph
                     return {std::make_shared<default_opset::Multiply>(
                         std::make_shared<default_opset::Subtract>(converted_x, zero_point), scale)};
                 }
-            }
-        }
-    }
-}
+            } // namespace set_13
+        }     // namespace op
+    }         // namespace onnx_import
+} // namespace ngraph

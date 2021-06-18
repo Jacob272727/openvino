@@ -41,10 +41,11 @@ namespace ngraph
                 void set_num_splits(const size_t num_splits) { m_num_splits = num_splits; }
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
             protected:
                 size_t m_num_splits;
             };
-        }
-    }
-}
+        } // namespace v1
+    }     // namespace op
+} // namespace ngraph

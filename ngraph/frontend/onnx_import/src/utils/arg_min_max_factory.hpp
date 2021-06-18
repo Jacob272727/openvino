@@ -39,8 +39,9 @@ namespace ngraph
                 const std::int64_t m_keep_dims;
                 Output<ngraph::Node> m_input_node;
                 std::int64_t m_axis;
+                std::int64_t m_select_last_index;
             };
 
-        } // namespace arg
+        } // namespace utils
     }     // namespace onnx_import
 } // namespace ngraph

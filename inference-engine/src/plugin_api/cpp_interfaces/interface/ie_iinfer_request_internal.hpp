@@ -8,15 +8,17 @@
 #include <ie_common.h>
 #include <ie_preprocess_data.hpp>
 #include <ie_input_info.hpp>
-#include <ie_icnn_network.hpp>
+#include <cpp/ie_infer_request.hpp>
 
 #include <map>
 #include <memory>
 #include <string>
 
 namespace InferenceEngine {
+
 class IExecutableNetworkInternal;
 class IVariableStateInternal;
+
 /**
  * @interface IInferRequestInternal
  * @brief An internal API of synchronous inference request to be implemented by plugin,
@@ -41,7 +43,7 @@ public:
 
     /**
      * @brief Infers specified input(s) in synchronous mode
-     * @note blocks all method of IInferRequest while request is ongoing (running or waiting in queue)
+     * @note blocks all method of InferRequest while request is ongoing (running or waiting in queue)
      */
     virtual void Infer();
 
@@ -50,7 +52,7 @@ public:
      * @note
      *  * This method is used in IInferRequestInternal::Infer, which calls the common code first and after uses this
      * plugin dependent implementation.
-     *  * Blocks all method of IInferRequest while request is ongoing (running or waiting in queue)
+     *  * Blocks all method of InferRequest while request is ongoing (running or waiting in queue)
      */
     virtual void InferImpl();
 
@@ -132,7 +134,7 @@ public:
      * becomes available, whichever comes first.
      * @param millis_timeout - maximum duration in milliseconds to block for
      * @note There are special cases when millis_timeout is equal some value of WaitMode enum:
-     * * STATUS_ONLY - immediately returns request status (IInferRequest::RequestStatus). It doesn't block or interrupt
+     * * STATUS_ONLY - immediately returns request status (InferRequest::StatusCode). It doesn't block or interrupt
      * current thread.
      * * RESULT_READY - waits until inference result becomes available
      * @return A status code
@@ -172,7 +174,26 @@ public:
      */
     void setPointerToExecutableNetworkInternal(const std::shared_ptr<IExecutableNetworkInternal>& exeNetwork);
 
+    /**
+     * @brief   Gets the pointer to userData.
+     * @return  Pointer to user data
+     */
+    INFERENCE_ENGINE_DEPRECATED("The method will be removed")
+    void* GetUserData() noexcept;
+
+    /**
+     * @brief       Sets the pointer to userData.
+     * @param[in]   Pointer to user data
+     */
+    INFERENCE_ENGINE_DEPRECATED("The method will be removed")
+    void SetUserData(void* userData) noexcept;
+
 protected:
+    /**
+     * @brief Destroys the object.
+     */
+    ~IInferRequestInternal();
+
     /**
      * @brief Checks and executes input data pre-processing if needed.
      * @param inputs Inputs blobs to perform preprocessing on
@@ -187,7 +208,6 @@ protected:
      * @param foundOutput A pointer to output DataPtr if found.
      * @return `True` - if loaded network has input with provided name,
      *         `false` - if loaded network has output with provided name
-     * @throws [parameter_mismatch] exception if input and output has the same name
      * @throws [not_found] exception if there is no input and output layers with given name
      */
     bool findInputAndOutputBlobByName(const std::string& name, InputInfo::Ptr& foundInput, DataPtr& foundOutput) const;
@@ -212,16 +232,19 @@ protected:
     int m_curBatch = -1;  //!< Current batch value used in dynamic batching
 
     /**
-     * @brief A shared pointer to ExecutableNetworkInternal interface
+     * @brief A shared pointer to IInferRequestInternal
      * @note Needed to correctly handle ownership between objects.
      */
     std::shared_ptr<IExecutableNetworkInternal> _exeNetwork;
     Callback _callback;  //!< A callback
 
-    /**
-     * @brief Destroys the object.
-     */
-    ~IInferRequestInternal();
+private:
+    void*   _userData = nullptr;
 };
+
+/**
+ * @brief SOPointer to IInferRequestInternal.
+ */
+using SoIInferRequestInternal = details::SOPointer<IInferRequestInternal>;
 
 }  // namespace InferenceEngine

@@ -246,13 +246,29 @@ namespace matmul
         }
         return rc;
     }
-} // namespace
+} // namespace matmul
 
 bool op::MatMul::evaluate(const HostTensorVector& outputs, const HostTensorVector& inputs) const
 {
     NGRAPH_OP_SCOPE(v0_MatMul_evaluate);
     return matmul::evaluate_matmul(
         inputs[0], inputs[1], outputs[0], get_transpose_a(), get_transpose_b());
+}
+
+bool op::MatMul::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v0_MatMul_has_evaluate);
+    switch (get_input_element_type(0))
+    {
+    case ngraph::element::i32:
+    case ngraph::element::i64:
+    case ngraph::element::u32:
+    case ngraph::element::u64:
+    case ngraph::element::f16:
+    case ngraph::element::f32: return true;
+    default: break;
+    }
+    return false;
 }
 
 void ngraph::op::v0::MatMul::validate_and_infer_types()

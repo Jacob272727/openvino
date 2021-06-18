@@ -51,6 +51,7 @@ namespace ngraph
                 void set_axis(int64_t axis) { m_axis = axis; }
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
                 bool evaluate_lower(const HostTensorVector& output_values) const override;
                 bool evaluate_upper(const HostTensorVector& output_values) const override;
 
@@ -60,7 +61,7 @@ namespace ngraph
                 /// \brief m_concat_axis stores m_axis plus the number of rank for each iteration
                 int64_t m_concat_axis = -1;
             };
-        }
+        } // namespace v0
         using v0::Concat;
-    }
-}
+    } // namespace op
+} // namespace ngraph

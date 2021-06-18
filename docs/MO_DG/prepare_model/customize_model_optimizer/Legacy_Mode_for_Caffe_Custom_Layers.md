@@ -1,6 +1,6 @@
 # Legacy Mode for Caffe* Custom Layers 
 
-> **NOTE**: This functionality is deprecated and will be removed in the future releases.
+> **NOTE: This functionality is deprecated and will be removed in future releases.**
 
 Model Optimizer can register custom layers in a way that the output shape is calculated by the Caffe\* framework
 installed on your system. This approach has several limitations:

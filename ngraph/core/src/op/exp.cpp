@@ -13,7 +13,7 @@
 using namespace std;
 using namespace ngraph;
 
-constexpr NodeTypeInfo op::Exp::type_info;
+NGRAPH_RTTI_DEFINITION(op::Exp, "Exp", 0, UnaryElementwiseArithmetic);
 
 op::Exp::Exp(const Output<Node>& arg)
     : UnaryElementwiseArithmetic(arg)
@@ -63,11 +63,28 @@ namespace expop
         }
         return rc;
     }
-}
+} // namespace expop
 
 bool op::Exp::evaluate(const HostTensorVector& outputs, const HostTensorVector& inputs) const
 {
     NGRAPH_OP_SCOPE(v0_Exp_evaluate);
     NGRAPH_CHECK(validate_host_tensor_vector(outputs, 1) && validate_host_tensor_vector(inputs, 1));
     return expop::evaluate_exp(inputs[0], outputs[0]);
+}
+
+bool op::Exp::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v0_Exp_has_evaluate);
+    switch (get_input_element_type(0))
+    {
+    case ngraph::element::boolean:
+    case ngraph::element::i32:
+    case ngraph::element::i64:
+    case ngraph::element::u32:
+    case ngraph::element::u64:
+    case ngraph::element::f16:
+    case ngraph::element::f32: return true;
+    default: break;
+    }
+    return false;
 }

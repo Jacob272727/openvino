@@ -72,7 +72,7 @@ namespace
         return op::Constant::create(
             element::i64, Shape{strides_length}, vector<int64_t>(strides_length, 1));
     }
-}
+} // namespace
 
 op::v1::StridedSlice::StridedSlice(const Output<Node>& data,
                                    const Output<Node>& begin,
@@ -267,7 +267,7 @@ namespace strided_slice
                                                ellipsis_mask);
         return evaluate(in, slice_plan, out);
     }
-}
+} // namespace strided_slice
 
 bool op::v1::StridedSlice::evaluate(const HostTensorVector& output_values,
                                     const HostTensorVector& input_values) const
@@ -286,6 +286,12 @@ bool op::v1::StridedSlice::evaluate(const HostTensorVector& output_values,
                                                  convert_mask_to_axis_set(get_shrink_axis_mask()),
                                                  convert_mask_to_axis_set(get_ellipsis_mask()),
                                                  output_values[0]);
+}
+
+bool op::v1::StridedSlice::has_evaluate() const
+{
+    NGRAPH_OP_SCOPE(v1_StridedSlice_has_evaluate);
+    return get_input_size() == 4;
 }
 
 bool op::v1::StridedSlice::evaluate_lower(const HostTensorVector& output_values) const

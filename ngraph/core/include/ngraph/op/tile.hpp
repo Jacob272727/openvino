@@ -35,11 +35,12 @@ namespace ngraph
 
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
             private:
                 bool evaluate_tile(const HostTensorVector& outputs,
                                    const HostTensorVector& inputs) const;
             };
-        }
-    }
-}
+        } // namespace v0
+    }     // namespace op
+} // namespace ngraph

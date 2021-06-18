@@ -2,11 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-/**
- * @brief a header file for IInferRequest interface
- * @file ie_iinfer_request.hpp
- */
-
 #pragma once
 
 #include <map>
@@ -16,9 +11,7 @@
 #include <unordered_map>
 #include <ie_common.h>
 #include <cpp_interfaces/interface/ie_iinfer_request_internal.hpp>
-#include <cpp_interfaces/impl/ie_executable_network_internal.hpp>
-#include <cpp/ie_infer_request.hpp>
-#include <cpp/ie_executable_network.hpp>
+#include <cpp_interfaces/interface/ie_iexecutable_network_internal.hpp>
 #include <openvino/itt.hpp>
 
 namespace HeteroPlugin {
@@ -28,9 +21,9 @@ public:
     typedef std::shared_ptr<HeteroInferRequest> Ptr;
 
     struct SubRequestDesc {
-        InferenceEngine::ExecutableNetwork  _network;
-        InferenceEngine::InferRequest::Ptr  _request;
-        openvino::itt::handle_t             _profilingTask;
+        InferenceEngine::SoExecutableNetworkInternal  _network;
+        InferenceEngine::SoIInferRequestInternal      _request;
+        openvino::itt::handle_t                       _profilingTask;
     };
     using SubRequestsList = std::vector<SubRequestDesc>;
 

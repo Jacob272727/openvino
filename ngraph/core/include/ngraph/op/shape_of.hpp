@@ -43,6 +43,7 @@ namespace ngraph
                 bool get_is_foldable() const { return m_is_foldable; }
                 bool evaluate(const HostTensorVector& output_values,
                               const HostTensorVector& input_values) const override;
+                bool has_evaluate() const override;
                 bool evaluate_lower(const HostTensorVector& output_values) const override;
                 bool evaluate_upper(const HostTensorVector& output_values) const override;
                 bool constant_fold(OutputVector& output_values,
@@ -52,7 +53,7 @@ namespace ngraph
                 bool m_is_foldable = true;
                 element::Type m_output_type;
             };
-        }
+        } // namespace v3
 
         namespace v0
         {
@@ -81,6 +82,7 @@ namespace ngraph
                 bool get_is_foldable() const { return m_is_foldable; }
                 bool evaluate(const HostTensorVector& output_values,
                               const HostTensorVector& input_values) const override;
+                bool has_evaluate() const override;
                 bool evaluate_lower(const HostTensorVector& output_values) const override;
                 bool evaluate_upper(const HostTensorVector& output_values) const override;
                 bool constant_fold(OutputVector& output_values,
@@ -89,7 +91,7 @@ namespace ngraph
             private:
                 bool m_is_foldable = true;
             };
-        }
+        } // namespace v0
         using v0::ShapeOf;
-    }
-}
+    } // namespace op
+} // namespace ngraph

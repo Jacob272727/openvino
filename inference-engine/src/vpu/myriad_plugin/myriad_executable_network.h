@@ -74,7 +74,6 @@ public:
     }
 
     ie::IInferRequestInternal::Ptr CreateInferRequest() override {
-        ie::IInferRequest::Ptr asyncRequest;
         if (_device == nullptr || !_device->isBooted()) {
             IE_THROW() << "Can not create infer request: there is no available devices with platform "
                                << _device->_platform;
@@ -92,16 +91,6 @@ public:
 
     void Export(std::ostream& model) override {
         model.write(_graphBlob.data(), _graphBlob.size());
-    }
-
-    void Export(const std::string &modelFileName) override {
-        std::ofstream modelFile(modelFileName, std::ios::out | std::ios::binary);
-
-        if (modelFile.is_open()) {
-            Export(modelFile);
-        } else {
-            IE_THROW() << "The " << modelFileName << " file can not be opened for export";
-        }
     }
 
     ie::Parameter GetMetric(const std::string &name) const override;

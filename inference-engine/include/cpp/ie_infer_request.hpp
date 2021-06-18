@@ -13,18 +13,18 @@
 #include <memory>
 #include <string>
 
+#include "ie_blob.h"
 #include "cpp/ie_memory_state.hpp"
-#include "ie_remote_context.hpp"
 #include "ie_iinfer_request.hpp"
 #include "details/ie_so_loader.h"
-#include "ie_blob.h"
-#include "ie_iinfer_request.hpp"
 
 namespace InferenceEngine {
-namespace details {
-class SharedObjectLoader;
-}
+
 class IInferRequestInternal;
+
+namespace details {
+class ICompletionCallbackWrapper;
+}  // namespace details
 
 /**
  * @copybrief IInferRequest
@@ -33,12 +33,20 @@ class IInferRequestInternal;
  * It can throw exceptions safely for the application, where it is properly handled.
  */
 class INFERENCE_ENGINE_API_CLASS(InferRequest) {
-    std::shared_ptr<IInferRequestInternal>          _impl;
-    std::shared_ptr<details::SharedObjectLoader>    _so;
+    details::SharedObjectLoader                          _so;
+    std::shared_ptr<IInferRequestInternal>               _impl;
+    IE_SUPPRESS_DEPRECATED_START
+    IInferRequest::Ptr                                   actual;
+    std::shared_ptr<details::ICompletionCallbackWrapper> callback;
+    IE_SUPPRESS_DEPRECATED_END
 
-    explicit InferRequest(const std::shared_ptr<IInferRequestInternal>&         impl,
-                          const std::shared_ptr<details::SharedObjectLoader>&   so);
-
+    /**
+     * @brief Constructs InferRequest from the initialized std::shared_ptr
+     * @param so Plugin to use. This is required to ensure that InferRequest can work properly even if plugin object is destroyed.
+     * @param impl Initialized shared pointer
+     */
+    InferRequest(const details::SharedObjectLoader&             so,
+                 const std::shared_ptr<IInferRequestInternal>&  impl);
     friend class ExecutableNetwork;
 
 public:
@@ -63,10 +71,17 @@ public:
      */
     InferRequest() = default;
 
+    IE_SUPPRESS_DEPRECATED_START
     /**
-     * @brief Destructor
+     * @deprecated This ctor will be removed in 2022.1
+     * @brief Constructs InferRequest from the initialized std::shared_ptr
+     * @param request Initialized shared pointer
+     * @param splg Plugin to use. This is required to ensure that InferRequest can work properly even if plugin object is destroyed.
      */
-    ~InferRequest();
+    INFERENCE_ENGINE_DEPRECATED("This ctor will be removed in 2022.1")
+    explicit InferRequest(IInferRequest::Ptr request,
+                          std::shared_ptr<details::SharedObjectLoader> splg = {});
+    IE_SUPPRESS_DEPRECATED_END
 
     /**
      * @brief Sets input/output data to infer
@@ -112,9 +127,7 @@ public:
     void Infer();
 
     /**
-     * @brief Cancel inference request
-     * @param name Name of input blob.
-     * @return pointer to pre-process info of blob with name
+     * @brief Cancels inference request
      */
     void Cancel();
 
@@ -175,7 +188,10 @@ public:
 private:
     void SetCompletionCallbackImpl(std::function<void()>);
     void SetCompletionCallbackImpl(std::function<void(InferRequest, StatusCode)>);
+    IE_SUPPRESS_DEPRECATED_START
     void SetCompletionCallbackImpl(IInferRequest::CompletionCallback);
+    IE_SUPPRESS_DEPRECATED_END
+
     template<typename T>
     struct SetCallback {
         void operator()(std::function<void()> f) {_this.SetCompletionCallbackImpl(std::move(f));}
@@ -190,9 +206,8 @@ public:
      */
     template<typename F>
     void SetCompletionCallback(F callbackToSet) {
-        return SetCallback<F>{*this}(std::move(callbackToSet));
+        SetCallback<F>{*this}(std::move(callbackToSet));
     }
-
 
     /**
      * @brief Gets state control interface for given infer request.
@@ -202,12 +217,14 @@ public:
      */
     std::vector<VariableState> QueryState();
 
+    IE_SUPPRESS_DEPRECATED_START
     /**
      * @brief  IInferRequest pointer to be used directly in CreateInferRequest functions
      * @return A shared pointer to IInferRequest interface
      */
     INFERENCE_ENGINE_DEPRECATED("Will be removed")
     operator std::shared_ptr<IInferRequest> ();
+    IE_SUPPRESS_DEPRECATED_END
 
     /**
      * @brief Checks if current InferRequest object is not initialized
@@ -220,7 +237,20 @@ public:
      * @return true if current InferRequest object is initialized, false - otherwise
      */
     explicit operator bool() const noexcept;
+
+    /**
+     * @brief Compares whether this request wraps the same impl underneath
+     * @return true if current InferRequest object doesn't wrap the same impl as the operator's arg
+     */
+    bool operator!=(const InferRequest&) const noexcept;
+
+    /**
+     * @brief Compares whether this request wraps the same impl underneath
+     * @return true if current InferRequest object wraps the same impl as the operator's arg
+     */
+    bool operator==(const InferRequest&) const noexcept;
 };
+
 template<>
 struct InferRequest::SetCallback<std::function<void(InferRequest, StatusCode)>> {
     void operator()(std::function<void(InferRequest, StatusCode)> f) {
@@ -228,6 +258,9 @@ struct InferRequest::SetCallback<std::function<void(InferRequest, StatusCode)>> 
     }
     InferRequest& _this;
 };
+
+IE_SUPPRESS_DEPRECATED_START
+
 template<>
 struct InferRequest::SetCallback<IInferRequest::CompletionCallback> {
     void operator()(IInferRequest::CompletionCallback f) {
@@ -235,4 +268,7 @@ struct InferRequest::SetCallback<IInferRequest::CompletionCallback> {
     }
     InferRequest& _this;
 };
+
+IE_SUPPRESS_DEPRECATED_END
+
 }  // namespace InferenceEngine

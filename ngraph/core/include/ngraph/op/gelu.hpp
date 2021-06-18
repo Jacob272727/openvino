@@ -37,7 +37,7 @@ namespace ngraph
                 virtual std::shared_ptr<Node>
                     clone_with_new_inputs(const OutputVector& new_args) const override;
             };
-        }
+        } // namespace v0
         using v0::Gelu;
         NGRAPH_SUPPRESS_DEPRECATED_END
 
@@ -74,6 +74,7 @@ namespace ngraph
 
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
                 std::shared_ptr<Node>
                     clone_with_new_inputs(const OutputVector& new_args) const override;
@@ -83,8 +84,8 @@ namespace ngraph
             private:
                 GeluApproximationMode m_approximation_mode = GeluApproximationMode::ERF;
             };
-        }
-    }
+        } // namespace v7
+    }     // namespace op
     template <>
     class NGRAPH_API AttributeAdapter<op::GeluApproximationMode>
         : public EnumAttributeAdapterBase<op::GeluApproximationMode>
@@ -99,4 +100,4 @@ namespace ngraph
                                                     0};
         const DiscreteTypeInfo& get_type_info() const override { return type_info; }
     };
-}
+} // namespace ngraph

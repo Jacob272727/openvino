@@ -50,6 +50,7 @@ namespace ngraph
                 virtual size_t get_version() const override { return 1; }
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
             protected:
                 Mode mode_from_string(const std::string& mode) const;
@@ -66,8 +67,8 @@ namespace ngraph
                 bool evaluate_reverse(const HostTensorVector& outputs,
                                       const HostTensorVector& inputs) const;
             };
-        }
-    }
+        } // namespace v1
+    }     // namespace op
 
     NGRAPH_API
     std::ostream& operator<<(std::ostream& s, const op::v1::Reverse::Mode& type);
@@ -85,4 +86,4 @@ namespace ngraph
         static constexpr DiscreteTypeInfo type_info{"AttributeAdapter<op::v1::Reverse::Mode>", 1};
         const DiscreteTypeInfo& get_type_info() const override { return type_info; }
     };
-}
+} // namespace ngraph

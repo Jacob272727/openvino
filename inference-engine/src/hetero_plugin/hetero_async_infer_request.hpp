@@ -2,11 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
-/**
- * @brief a header file for IInferRequest interface
- * @file ie_iinfer_request.hpp
- */
-
 #pragma once
 
 #include <vector>
@@ -28,7 +23,6 @@ public:
 
 private:
     HeteroInferRequest::Ptr                     _heteroInferRequest;
-    std::vector<InferenceEngine::StatusCode>    _statusCodes;
 };
 
 }  // namespace HeteroPlugin

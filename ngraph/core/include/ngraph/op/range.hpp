@@ -42,11 +42,12 @@ namespace ngraph
                     clone_with_new_inputs(const OutputVector& new_args) const override;
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
 
             private:
                 element::Type m_output_type;
             };
-        }
+        } // namespace v4
         namespace v0
         {
             /// \brief Range operation, analogous to `range()` in Python.
@@ -77,8 +78,9 @@ namespace ngraph
                     clone_with_new_inputs(const OutputVector& new_args) const override;
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
             };
-        }
+        } // namespace v0
         using v0::Range;
-    }
-}
+    } // namespace op
+} // namespace ngraph

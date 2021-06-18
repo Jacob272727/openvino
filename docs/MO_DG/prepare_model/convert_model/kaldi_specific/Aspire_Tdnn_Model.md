@@ -1,7 +1,7 @@
 # Convert Kaldi* ASpIRE Chain Time Delay Neural Network (TDNN) Model to the Intermediate Representation
 
 You can [download a pre-trained model](https://kaldi-asr.org/models/1/0001_aspire_chain_model.tar.gz) 
-for the ASpIRE Chain Time Delay Neural Network (TDNN) from the Kaldi* project official web-site.
+for the ASpIRE Chain Time Delay Neural Network (TDNN) from the Kaldi* project official website.
 
 ## Convert ASpIRE Chain TDNN Model to IR
 

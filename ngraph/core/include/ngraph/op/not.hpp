@@ -31,7 +31,8 @@ namespace ngraph
                     clone_with_new_inputs(const OutputVector& new_args) const override;
                 bool evaluate(const HostTensorVector& outputs,
                               const HostTensorVector& inputs) const override;
+                bool has_evaluate() const override;
             };
-        }
-    } // namespace op
+        } // namespace v1
+    }     // namespace op
 } // namespace ngraph

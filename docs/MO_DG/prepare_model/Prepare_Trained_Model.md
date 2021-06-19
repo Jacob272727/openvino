@@ -26,3 +26,15 @@ The following sections provide the information about how to use the Model Optimi
 * [Custom Layers in Model Optimizer](customize_model_optimizer/Customize_Model_Optimizer.md)
 * [Model Optimization Techniques](Model_Optimization_Techniques.md)
 * [Model Optimizer Frequently Asked Questions](Model_Optimizer_FAQ.md)
+
+```{toctree}
+---
+hidden:
+---
+Config_Model_Optimizer.md
+convert_model/Converting_Model
+Model_Optimization_Techniques.md
+customize_model_optimizer/Subgraph_Replacement_Model_Optimizer.md
+Supported_Frameworks_Layers.md
+customize_model_optimizer/Customize_Model_Optimizer
+```

@@ -69,3 +69,13 @@ There are no ONNX\* specific parameters, so only [framework-agnostic parameters]
 
 ## Supported ONNX\* Layers
 Refer to [Supported Framework Layers](../Supported_Frameworks_Layers.md) for the list of supported standard layers.
+
+```{toctree}
+---
+hidden:
+---
+onnx_specific/Convert_Faster_RCNN.md
+onnx_specific/Convert_Mask_RCNN.md
+onnx_specific/Convert_GPT2.md
+onnx_specific/Convert_DLRM.md
+```

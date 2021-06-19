@@ -106,3 +106,10 @@ must be copied to `Parameter_0_for_Offset_fastlstm2.r_trunc__2Offset_fastlstm2.r
 
 ## Supported Kaldi\* Layers
 Refer to [Supported Framework Layers ](../Supported_Frameworks_Layers.md) for the list of supported standard layers.
+
+```{toctree}
+---
+hidden:
+---
+kaldi_specific/Aspire_Tdnn_Model
+```

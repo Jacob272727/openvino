@@ -1295,3 +1295,13 @@ Refer to the `extensions/back/GatherNormalizer.py` for the example of a such typ
 * [Extending the Model Optimizer with Caffe* Python Layers](Extending_Model_Optimizer_with_Caffe_Python_Layers.md)
 * [Extending the Model Optimizer for Custom MXNet* Operations](Extending_MXNet_Model_Optimizer_with_New_Primitives.md)
 * [Legacy Mode for Caffe* Custom Layers](Legacy_Mode_for_Caffe_Custom_Layers.md)
+
+```{toctree}
+---
+hidden:
+---
+Extending_Model_Optimizer_with_New_Primitives.md
+Extending_Model_Optimizer_with_Caffe_Python_Layers.md
+Extending_MXNet_Model_Optimizer_with_New_Primitives.md
+Legacy_Mode_for_Caffe_Custom_Layers.md
+```

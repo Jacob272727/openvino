@@ -51,3 +51,13 @@ torch.onnx.export(model, (dummy_input, ), 'model.onnx')
 * Not all PyTorch\* operations can be exported to ONNX\* opset 9 which is used by default, as of version 1.8.1.
 It is recommended to export models to opset 11 or higher when export to default opset 9 is not working. In that case, use `opset_version`
 option of the `torch.onnx.export`. For more information about ONNX* opset, refer to the [Operator Schemas](https://github.com/onnx/onnx/blob/master/docs/Operators.md).
+
+```{toctree}
+---
+hidden:
+---
+pytorch_specific/Convert_F3Net
+pytorch_specific/Convert_QuartzNet
+pytorch_specific/Convert_RNNT
+pytorch_specific/Convert_YOLACT
+```

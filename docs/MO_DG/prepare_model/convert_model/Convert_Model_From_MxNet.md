@@ -103,3 +103,11 @@ In this document, you learned:
 * Basic information about how the Model Optimizer works with MXNet\* models
 * Which MXNet\* models are supported
 * How to convert a trained MXNet\* model using the Model Optimizer with both framework-agnostic and MXNet-specific command-line options
+
+```{toctree}
+---
+hidden:
+---
+mxnet_specific/Convert_Style_Transfer_From_MXNet.md
+mxnet_specific/Convert_GluonCV_Models.md
+```

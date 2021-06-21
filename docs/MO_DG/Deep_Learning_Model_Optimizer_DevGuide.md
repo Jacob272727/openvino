@@ -51,7 +51,7 @@ To learn about all Model Optimizer parameters and conversion technics, see the [
   <tr>
     <td><iframe width="240" src="https://www.youtube.com/embed/Kl1ptVb7aI8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
     <td><iframe width="240" src="https://www.youtube.com/embed/BBt1rseDcy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-    <td><iframe width="240" src="https://www.youtube.com/embed/RF8ypHyiKrY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+    <td><iframe width="240" src  ="https://www.youtube.com/embed/RF8ypHyiKrY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
   </tr>
   <tr>
     <td><strong>Model Optimizer Concept</strong>. <br>Duration: 3:56</td>
@@ -59,12 +59,3 @@ To learn about all Model Optimizer parameters and conversion technics, see the [
     <td><strong>Choosing the Right Precision</strong>. <br>Duration: 4:18.</td>
   </tr>
 </table>
-
-```{toctree}
----
-hidden:
----
-prepare_model/Prepare_Trained_Model
-prepare_model/Model_Optimizer_FAQ.md
-Known_Issues_Limitations.md
-```

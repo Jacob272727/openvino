@@ -251,11 +251,10 @@ Convert_Model_From_Caffe
 Convert_Model_From_MxNet
 Convert_Model_From_Kaldi
 Convert_Model_From_ONNX
-Convert_Model_From_PyTorch
-IR_suitable_for_INT8_inference
-Model_Optimization_Techniques
+../Model_Optimization_Techniques
 Cutting_Model
-customize_model_optmizer/index
-Supported_Frameworks_Layers
+../customize_model_optimizer/Subgraph_Replacement_Model_Optimizer.md
+../Supported_Frameworks_Layers
+IR_suitable_for_INT8_inference
 Legacy_IR_Layers_Catalog_Spec
 ```

@@ -144,7 +144,7 @@ Where `HEIGHT` and `WIDTH` are the input images height and width for which the m
 | DenseNet | [Repo](https://github.com/taki0112/Densenet-Tensorflow)|
 | CRNN | [Repo](https://github.com/MaybeShewill-CV/CRNN_Tensorflow) |
 | NCF | [Repo](https://github.com/tensorflow/models/tree/master/official/recommendation) |
-| lm_1b | [Repo](https://github.com/tensorflow/models/tree/master/research/lm_1b) |
+| lm_1b | [Repo](https://github.com/tensorflow/models/tree/archive/research/lm_1b) |
 | DeepSpeech | [Repo](https://github.com/mozilla/DeepSpeech) |
 | A3C | [Repo](https://github.com/miyosuda/async_deep_reinforce) |
 | VDCNN | [Repo](https://github.com/WenchenLi/VDCNN) |
@@ -326,7 +326,7 @@ python3 mo_tf.py --input_model inception_v1.pb -b 1 --transformations_config tra
 python3 mo_tf.py --input_model inception_v1.pb -b 1 --tensorboard_logdir /tmp/log_dir
 ```
 
-* Launching the Model Optimizer for a model with custom TensorFlow operations (refer to the [TensorFlow* documentation](https://www.tensorflow.org/extend/adding_an_op)) implemented in C++ and compiled into the shared library `my_custom_op.so`. Model Optimizer falls back to TensorFlow to infer output shape of operations implemented in the library if a custom TensorFlow operation library is provided. If it is not provided, a custom operation with an inference function is needed. For more information about custom operations, refer to the [Extending the Model Optimizer with New Primitives](../customize_model_optimizer/Extending_Model_Optimizer_with_New_Primitives.md).
+* Launching the Model Optimizer for a model with custom TensorFlow operations (refer to the [TensorFlow* documentation](https://www.tensorflow.org/guide/create_op)) implemented in C++ and compiled into the shared library `my_custom_op.so`. Model Optimizer falls back to TensorFlow to infer output shape of operations implemented in the library if a custom TensorFlow operation library is provided. If it is not provided, a custom operation with an inference function is needed. For more information about custom operations, refer to the [Extending the Model Optimizer with New Primitives](../customize_model_optimizer/Extending_Model_Optimizer_with_New_Primitives.md).
 ```sh
 python3 mo_tf.py --input_model custom_model.pb --tensorflow_custom_layer_libraries ./my_custom_op.so
 ```

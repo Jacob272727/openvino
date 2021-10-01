@@ -2136,7 +2136,7 @@ Where \f$n\f$ is the size of each local region.
 
 **Short description**: [Reference](http://caffe.berkeleyvision.org/tutorial/layers/lrn.html)
 
-**Detailed description**: [Reference](http://yeephycho.github.io/2016/08/03/Normalizations-in-neural-networks/#Local-Response-Normalization-LRN)
+**Detailed description**: [Reference](https://yeephycho.github.io/2016/08/03/normalizations_in_neural_networks/)
 
 **Parameters**: *Norm* layer parameters are specified in the `data` node, which is a child of the `layer` node.
 

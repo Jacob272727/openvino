@@ -123,7 +123,7 @@ This section is intended for users who want to understand how the Model Optimize
 
 Implementation of the sub-graph replacers for Object Detection API models is located in the file `<INSTALL_DIR>/deployment_tools/model_optimizer/extensions/front/tf/ObjectDetectionAPI.py`.
 
-It is also important to open the model in the [TensorBoard](https://www.tensorflow.org/guide/summaries_and_tensorboard) to see the topology structure. Model Optimizer can create an event file that can be then fed to the TensorBoard* tool. Run the Model Optimizer with providing two command line parameters:
+It is also important to open the model in the [TensorBoard](https://www.tensorflow.org/tensorboard/get_started) to see the topology structure. Model Optimizer can create an event file that can be then fed to the TensorBoard* tool. Run the Model Optimizer with providing two command line parameters:
 * `--input_model <path_to_frozen.pb>` --- Path to the frozen model
 * `--tensorboard_logdir` --- Path to the directory where TensorBoard looks for the event files.
 
@@ -133,7 +133,7 @@ The SSD topologies are the simplest ones among Object Detection API topologies, 
 
 #### Preprocessor Block
 
-All Object Detection API topologies contain `Preprocessor` block of nodes (aka ["scope"](https://www.tensorflow.org/guide/graph_viz)) that performs two tasks:
+All Object Detection API topologies contain `Preprocessor` block of nodes (aka ["scope"](https://www.tensorflow.org/tensorboard/graphs)) that performs two tasks:
 
 * Scales image to the size required by the topology.
 * Applies mean and scale values if needed.
